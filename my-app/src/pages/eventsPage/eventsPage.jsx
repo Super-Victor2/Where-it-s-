@@ -1,8 +1,14 @@
 import './eventsPage.css';
+import EventsTop from  '../../components/eventsComp/eventTop';
+import EventOne from  '../../components/eventsComp/eventOne';
 
 function eventsPage() {
     return (
-        <homeSection />
+        <>
+            <EventsTop />
+            <EventOne />
+        </>
+        
     )
 }
 

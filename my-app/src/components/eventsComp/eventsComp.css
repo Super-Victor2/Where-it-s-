@@ -1,0 +1,21 @@
+.content-wrapper {
+    margin: 3em;
+}
+
+.event-top-title {
+    margin: 1em;
+}
+
+.event-search {
+    margin: 1em;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 12px 60px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    color: white;
+}
+
+.event-search:focus {
+    transform: scale(1.03);
+}
