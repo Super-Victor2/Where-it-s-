@@ -1,9 +1,16 @@
-.content-wrapper {
-    margin: 3em;
+/*   Event Top   */
+
+.event-top-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1em;
 }
 
 .event-top-title {
     margin: 1em;
+    color: var(--primary-font-color);
+    font-size: var(--title-font-size);
 }
 
 .event-search {
@@ -14,8 +21,76 @@
     transition: all 0.3s ease-in-out;
     text-align: center;
     color: white;
+    width: 100%;
 }
 
 .event-search:focus {
     transform: scale(1.03);
+}
+
+/*   Event boxes   */
+
+.event-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    cursor: pointer;
+}
+
+.date {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 20px 20px;
+    color: white;
+    text-align: center;
+}
+
+/*   Event boxes info  */
+
+.event-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 500px) );
+    grid-template-rows: repeat(3, 26px);
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.event-name {
+    font-size: 22px;
+}
+
+.event-arena {
+    grid-area: 2 / 1;
+    font-size: 12px;
+    font-style: italic;
+
+}
+
+.event-from {
+    grid-area: 3 / 1;
+    font-size: 14px;
+}
+
+.event-to {
+    grid-area: 3 / 1;
+    margin-left: 50px;
+    font-size: 14px;
+}
+
+.event-price {
+    grid-area: 3 / 3;
+    font-size: 17px;
+    color: var(--secondary-font-color);
+}
+
+p {
+    color: white;
+}
+
+/*   Event boxes info mediaquarry  */
+
+@media screen and (max-width: 380px) {
+    .event-name {
+        font-size: 18px;
+    }
 }

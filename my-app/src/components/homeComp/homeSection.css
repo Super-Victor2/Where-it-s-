@@ -1,15 +1,24 @@
-section {
+.home-wrapper {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 3em;
 }
 
 img {
-    width: 75px;
-    height: 73px;
+    width: 182px;
+    height: 178px;
 }
 
-h1 {
-    color: white;
+.colored-title {
+    color: var(--primary-font-color);
+    margin: 0.5em;
+    font-size: var(--title-font-size);
 }
+
+.basic-title {
+    color: white;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 100;
+}
+

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function footer() {
     return (
-      <footer>
+      <footer className='footer-wrapper'> 
           <ul className='footer_items'>
             <Link to='/' className='footer-item_link'>Home</Link>
             <Link to='/eventsPage' className='footer-item_link'>Events</Link>

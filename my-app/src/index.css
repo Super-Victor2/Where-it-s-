@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
+
 :root {
   --primary-background-color: rgba(35, 31, 66, 1);
   --primary-font-color: rgba(245, 107, 154, 1);
@@ -5,8 +7,16 @@
   --primary-color: rgba(245, 107, 154, 1);
   --secondary-color: rgba(55, 174, 171, 1);
   --button-color: rgba(55, 174, 171, 1);
+  --title-font-size: 32px;
 
   background-color: var(--primary-background-color);
+  font-family: "Sansita", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  
+  display: flex;
+  justify-content: center;
+  margin: 3em;
 }
 
 * {
