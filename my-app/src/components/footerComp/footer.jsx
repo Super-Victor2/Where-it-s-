@@ -7,7 +7,7 @@ function footer() {
           <ul className='footer_items'>
             <Link to='/' className='footer-item_link'>Home</Link>
             <Link to='/eventsPage' className='footer-item_link'>Events</Link>
-            <Link to='/orderPage' className='footer-item_link'>Order</Link>
+            <Link to='/ticketsPage' className='footer-item_link'>Order</Link>
           </ul>
       </footer>
           

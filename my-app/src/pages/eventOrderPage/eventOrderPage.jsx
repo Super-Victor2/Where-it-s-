@@ -1,4 +1,4 @@
-import './cartPage.css';
+import './eventOrderPage.css';
 
 function eventsPage() {
     return (
