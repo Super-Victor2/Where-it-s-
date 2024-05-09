@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function eventFive() {
     return (
-      <Link to='/orderPage' className='event-wrapper'>
+      <Link to='/eventOrderPage' className='event-wrapper'>
         <h4 className="date">21 MAR</h4>
           <aside className="event-info">
             <p className="event-name">Lasse-Stefanz</p>

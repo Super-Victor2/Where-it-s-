@@ -1,0 +1,122 @@
+/*  Event Order Top   */
+
+.event-order-container {
+    text-align: center;
+}
+
+.event-order-title {
+    color: var(--primary-font-color);
+    font-size: var(--title-font-size);
+    margin: 1em;
+}
+
+.event-order-text {
+    color: var(--shadow-font-color);
+    font-style: italic;
+    font-size: 19px;
+}
+
+/*  Event Order Middle   */
+
+.event-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+    margin-top: 2em;
+}
+
+.event-name {
+    color: var(--primary-font-color);
+    font-size: var(--title-font-size);
+}
+
+.event-order-info {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.event-order-info-text {
+    color: var(--secondary-font-color);
+    font-size: 19px;
+}
+
+.event-order-info-arena {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.event-arena-info {
+    color: var(--shadow-font-color);
+    font-size: 16px;
+}
+
+.event-arena-info {
+    color: var(--shadow-font-color);
+    font-style: italic;
+}
+
+/*  Event Order Selector   */
+
+.event-order-wrapper {
+    width: 100%;
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+.event-order-title {
+    color: var(--primary-font-color);
+    font-size: 24px;
+    padding: 5px;
+}
+
+/*   Order Info   */
+
+.event-order-info-text-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1em;
+}
+
+.event-order-title-value {
+    color: white;
+    font-size: var(--title-font-size);
+}
+
+/*   Order Selector   */
+
+.event-order-selector {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--primary-color);
+    text-align: center;
+}
+
+.event-order-number {
+    color: white;
+    font-size: 28px;
+    border: 1px solid var(--primary-color);
+    width: 100%;
+    font-weight: 100;
+}
+
+.event-order-selector-item {
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}

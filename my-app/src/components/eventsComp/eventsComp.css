@@ -100,10 +100,18 @@ p {
     align-items: center;
     border-radius: 3px;
     margin-top: 1em;
+    transition: all 0.3s ease-in-out;
 }
 
 .button-text {
     font-size: 22px;
+}
+
+/*   Button Hover   */
+
+.button-wrapper:hover {
+    opacity: 90%;
+    transform: scale(1.03);
 }
 
 /*   Event boxes info mediaquarry  */

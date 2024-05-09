@@ -12,7 +12,7 @@ function eventsPage() {
     return (
         <>
             <EventsTop />
-            <EventsDesign />
+            <EventOne />
             <EventTwo />
             <EventThree />
             <EventFour />
