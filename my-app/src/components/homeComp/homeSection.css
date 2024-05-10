@@ -1,3 +1,10 @@
+.home-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 3em;
+}
+
 .home-wrapper {
     display: flex;
     align-items: center;
@@ -20,5 +27,6 @@ img {
     font-size: 22px;
     font-style: italic;
     font-weight: 100;
+    margin-top: -5px;
 }
 

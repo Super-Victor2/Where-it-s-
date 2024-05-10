@@ -5,6 +5,7 @@
     align-items: center;
     flex-direction: column;
     margin-bottom: 1em;
+    margin: 3em;
 }
 
 .event-top-title {
@@ -17,11 +18,11 @@
     margin: 1em;
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
-    padding: 12px 60px;
     transition: all 0.3s ease-in-out;
     text-align: center;
     color: white;
     width: 100%;
+    height: 35px;
 }
 
 .event-search:focus {
@@ -32,18 +33,32 @@
 
 .event-wrapper {
     display: flex;
-    flex-direction: row;
-    gap: 2em;
+    flex-direction: column;
+    gap: 1em;
     cursor: pointer;
     text-decoration: none;
+    margin: 3em;
+}
+
+.event-card {
+    display: flex;
+    gap: 1em;
+}
+
+.date-wrapper {
+    display: flex;
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    width: 160px;
+    height: 79px;
+    border: 1px solid white;
+    border-radius: 3px;
 }
 
 .date {
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 20px 20px;
-    color: white;
     text-align: center;
+    color: white;
+    font-size: 14px;
 }
 
 /*   Event boxes info  */
@@ -90,16 +105,23 @@ p {
 
 /*   Event button  */
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
 .button-wrapper {
     background-color: var(--button-color);
-    width: 100%;
+    width: 225px;
     height: 60px;
-    text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 3px;
     margin-top: 1em;
+    margin-bottom: 6em;
     transition: all 0.3s ease-in-out;
 }
 
@@ -116,8 +138,14 @@ p {
 
 /*   Event boxes info mediaquarry  */
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 480px) {
     .event-name {
         font-size: 18px;
+    }
+
+}
+@media screen and (max-width: 400px) {
+    .date {
+        font-size: 12px;
     }
 }

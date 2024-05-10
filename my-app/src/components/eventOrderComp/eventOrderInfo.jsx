@@ -4,7 +4,7 @@ function eventOrderinfo() {
     return (
         <>
             <section className="event-info-container">
-                <p className="event-name">Lasse-Stefanz</p>
+                <p className="event-order-info-name">Lasse-Stefanz</p>
                 <aside className="event-order-info">
                     <p className="event-order-info-text">21 MAR</p>
                     <p className="event-order-info-text">kl</p>

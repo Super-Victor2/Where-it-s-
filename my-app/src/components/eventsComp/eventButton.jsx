@@ -1,12 +1,14 @@
 import './eventsComp.css';
 import { Link } from 'react-router-dom';
 
-function eventButton() {
+function eventOrderButton() {
     return (
-      <Link to='/orderPage' className='button-wrapper'>
-        <p className="button-text">Till varukorgen</p>
+      <Link to='/orderPage' className="button-container">
+        <nav className='button-wrapper'>
+            <p className="button-text">Lägg i varukorgen</p>
+        </nav>
       </Link>
     )
 }
   
-export default eventButton;
+export default eventOrderButton;

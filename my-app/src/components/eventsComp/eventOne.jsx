@@ -25,7 +25,7 @@ function eventOne() {
   return (
     <Link to='/eventOrderPage' className='event-wrapper'>
       {events.length > 0 && events.map(event => (
-        <div key={event.id} event={event} className="event-card">
+        <div key={index} className="event-card">
           <h4 className="date">{event.date}</h4>
           <aside className="event-info">
             <p className="event-name">{event[0].name}</p>

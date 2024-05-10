@@ -27,7 +27,7 @@
     margin-top: 2em;
 }
 
-.event-name {
+.event-order-info-name {
     color: var(--primary-font-color);
     font-size: var(--title-font-size);
 }
@@ -62,14 +62,11 @@
 /*  Event Order Selector   */
 
 .event-order-wrapper {
-    width: 100%;
     border: 1px solid var(--primary-color);
     border-radius: 3px;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 3em;
-    margin-bottom: 3em;
+    margin: 3em;
 }
 
 .event-order-title {
@@ -84,7 +81,14 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 1em;
+}
+
+.event-order-info-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .event-order-title-value {

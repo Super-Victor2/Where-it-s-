@@ -4,7 +4,7 @@ import './eventOrderComp.css';
 function eventOrderSelector() {
     return (
         <section className="event-order-wrapper">
-            <aside className="event-order-info-text-wrapper">
+            <aside className="event-order-info-text">
                 <h1 className="event-order-title-value">1050</h1>
                 <h1 className="event-order-title-value">sek</h1>
             </aside>
