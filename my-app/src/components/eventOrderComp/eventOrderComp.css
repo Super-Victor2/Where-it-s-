@@ -22,14 +22,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1em;
-    width: 100%;
-    margin-top: 2em;
+    gap: 5px;
 }
 
 .event-order-info-name {
     color: var(--primary-font-color);
     font-size: var(--title-font-size);
+    margin: 0;
 }
 
 .event-order-info {
@@ -41,6 +40,7 @@
 .event-order-info-text {
     color: var(--secondary-font-color);
     font-size: 19px;
+    margin: 0;
 }
 
 .event-order-info-arena {
@@ -52,6 +52,7 @@
 .event-arena-info {
     color: var(--shadow-font-color);
     font-size: 16px;
+    margin: 0;
 }
 
 .event-arena-info {

@@ -5,6 +5,7 @@
     align-items: center;
     flex-direction: column;
     margin-bottom: 1em;
+    margin: 3em;
 }
 
 .order-page-title {
@@ -28,6 +29,7 @@
     color: var(--primary-font-color);
     font-size: 24px;
     padding: 5px;
+    margin: 0;
 }
 
 /*   Order Info   */
@@ -35,7 +37,6 @@
 .order-info {
     display: flex;
     flex-direction: row;
-    margin-bottom: 5px;
 }
 
 .order-info-item {
@@ -53,8 +54,6 @@
     justify-content: center;
     justify-items: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
     border: 1px solid var(--primary-color);
     text-align: center;
 }
@@ -73,13 +72,14 @@
     cursor: pointer;
 }
 
-/*   Order Button   */
+/*   Order Value Info   */
 
 .order-value-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: -1.5em;
 }
 
 .order-value-text {

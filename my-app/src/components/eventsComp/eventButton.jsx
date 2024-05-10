@@ -5,7 +5,7 @@ function eventOrderButton() {
     return (
       <Link to='/orderPage' className="button-container">
         <nav className='button-wrapper'>
-            <p className="button-text">Lägg i varukorgen</p>
+            <p className="button-text">Till varukorgen</p>
         </nav>
       </Link>
     )

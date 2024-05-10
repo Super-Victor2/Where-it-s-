@@ -1,43 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-function eventOne() {
-  const [events, setEvents] = useState([]);
+const MyComponent = () => {
+  const [event, setEvent] = useState(null); // Only store one event, not an array
 
   useEffect(() => {
-    async function fetchEvents() {
+    const fetchData = async () => {
       try {
-        const response = await axios.get('https://santosnr6.github.io/Data/events.json');
-        console.log(response.data);
-        setEvents(response.data);
+        const response = await fetch('https://santosnr6.github.io/Data/events.json');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        // Accessing the first object from the 'events' array in the response
+        setEvent(jsonData.events[0]);
       } catch (error) {
-        console.error('Error fetching events:', error);
-
-        setEvents([]);
+        console.error('Error fetching data:', error);
       }
-    }
+    };
 
-    fetchEvents();
-  }, []);
+    fetchData();
+  }, []); // Empty dependency array means this effect runs only once after the initial render
 
+  if (!event) {
+    return <div>Error: Data format is not as expected.</div>;
+  }
+
+  console.log(event);
 
   return (
-    <Link to='/eventOrderPage' className='event-wrapper'>
-      {events.length > 0 && events.map(event => (
-        <div key={index} className="event-card">
-          <h4 className="date">{event.date}</h4>
-          <aside className="event-info">
-            <p className="event-name">{event[0].name}</p>
-            <p className="event-arena">{event[0].where}</p>
-            <p className="event-from">{event[0].from}</p>
-            <p className="event-to">{event[0].to}</p>
-            <p className="event-price">{event[0].price}</p>
-            </aside>  
-        </div>
-      ))}
+    <Link to='/eventOrderPageOne' className='event-wrapper'>
+      <div className="event-card">
+        <aside className="date-wrapper">
+          <h4 className="date">{event.when.date}</h4>
+        </aside>
+        <aside className="event-info">
+          <p className="event-name">{event.name}</p>
+          <p className="event-arena">{event.where}</p>
+          <p className="event-from">{event.when.from}</p>
+          <p className="event-to">{event.when.to}</p>
+          <p className="event-price">{event.price}</p>
+        </aside>  
+      </div>
     </Link>
   );
-}
+};
 
-export default eventOne;
+export default MyComponent;
