@@ -8,6 +8,12 @@ function EventOrderSelector() {
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
+        // Load selected number from localStorage if available
+        const savedSelectedNumber = localStorage.getItem('selectedNumber');
+        if (savedSelectedNumber) {
+            setSelectedNumber(parseInt(savedSelectedNumber));
+        }
+
         const fetchData = async () => {
             try {
                 const response = await fetch('https://santosnr6.github.io/Data/events.json');
@@ -38,12 +44,17 @@ function EventOrderSelector() {
     };
 
     const handleAddToCart = () => {
-        // Save selected number and data to localStorage
+        // Save selected number to localStorage
+        localStorage.setItem('selectedNumberTwo', selectedNumber);
+
+        // Create a unique key based on the selectedNumber
+        const keyTwo = `orderData_${selectedNumber}`;
+        // Save selected number and data to localStorage using the unique key
         const orderData = {
             selectedNumber,
             eventsData
         };
-        localStorage.setItem('orderData', JSON.stringify(orderData));
+        localStorage.setItem(keyTwo, JSON.stringify(orderData));
     };
 
     return (

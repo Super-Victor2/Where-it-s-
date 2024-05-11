@@ -5,15 +5,38 @@ import { Link } from 'react-router-dom';
 function OrderSelector() {
     const [selectedNumber, setSelectedNumber] = useState(1); // Default value
     const [events, setEvents] = useState(null);
+    const [totalOrderValue, setTotalOrderValue] = useState(0); // State to hold the total order value
 
     useEffect(() => {
         // Get data from localStorage
-        const orderData = JSON.parse(localStorage.getItem('orderData'));
+        const getOrderData = () => {
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('orderData')) {
+                    return JSON.parse(localStorage.getItem(key));
+                }
+            }
+            return null;
+        };
+    
+        const orderData = getOrderData();
+    
         if (orderData) {
             setSelectedNumber(orderData.selectedNumber);
             setEvents(orderData.eventsData);
+        } else {
+            console.error('Error: No order data found in localStorage.');
         }
     }, []);
+    
+
+    useEffect(() => {
+        // Calculate the total order value based on selectedNumber and events
+        if (events) {
+            const totalPrice = events.price * selectedNumber;
+            setTotalOrderValue(totalPrice);
+        }
+    }, [selectedNumber, events]); // Recalculate total order value when selectedNumber or events change
 
     const handleMinusClick = () => {
         if (selectedNumber > 1) {
@@ -30,7 +53,7 @@ function OrderSelector() {
         // Save selected number and data to localStorage
         const orderData = {
             selectedNumber,
-            eventsData
+            eventsData: events
         };
         localStorage.setItem('orderData', JSON.stringify(orderData));
     };
@@ -63,7 +86,8 @@ function OrderSelector() {
             <section className="order-value-container">
                 <p className="order-value-text">Totalt värde på order</p>
                 <aside className="order-value-wrapper">
-                    <h2 className="order-value order-value-title">1310</h2>
+                    {/* Display the total order value */}
+                    <h2 className="order-value order-value-title">{totalOrderValue}</h2>
                     <h2 className="order-sek order-value-title">sek</h2>
                 </aside>
             </section>

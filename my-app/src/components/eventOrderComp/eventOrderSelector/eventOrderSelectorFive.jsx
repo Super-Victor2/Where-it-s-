@@ -38,13 +38,16 @@ function EventOrderSelector() {
     };
 
     const handleAddToCart = () => {
-        // Save selected number and data to localStorage
+        // Create a unique key based on the selectedNumber
+        const keyFive = `orderData_${selectedNumber}`;
+        // Save selected number and data to localStorage using the unique key
         const orderData = {
             selectedNumber,
             eventsData
         };
-        localStorage.setItem('orderData', JSON.stringify(orderData));
+        localStorage.setItem(keyFive, JSON.stringify(orderData));
     };
+    
 
     return (
         <section className="event-order-container">
