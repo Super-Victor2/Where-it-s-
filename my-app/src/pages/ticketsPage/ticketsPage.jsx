@@ -1,8 +1,9 @@
 import './ticketsPage.css'
+import TicketComp from '../../components/ticketsComp/ticketsComp'
 
 function ticketsPage() {
     return (
-        <homeSection />
+        <TicketComp />
     )
 }
 

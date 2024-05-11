@@ -12,6 +12,7 @@
     margin: 1em;
     color: var(--primary-font-color);
     font-size: var(--title-font-size);
+    text-align: center;
 }
 
 /*   Order Boxes   */
@@ -23,7 +24,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    margin: 1rem;
 }
 
 .order-title {

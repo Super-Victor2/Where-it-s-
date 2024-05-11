@@ -3,90 +3,94 @@ import './orderComp.css';
 import { Link } from 'react-router-dom';
 
 function OrderSelector() {
-    const [selectedNumber, setSelectedNumber] = useState(1); // Default value
-    const [events, setEvents] = useState(null);
-    const [totalOrderValue, setTotalOrderValue] = useState(0); // State to hold the total order value
+    const [selectedNumber, setSelectedNumber] = useState(1); 
+    const [events, setEvents] = useState([]); 
+    const [totalOrderValue, setTotalOrderValue] = useState(0); 
 
     useEffect(() => {
-        // Get data from localStorage
+        const storedSelectedNumber = localStorage.getItem('selectedNumber');
+        if (storedSelectedNumber) {
+            setSelectedNumber(parseInt(storedSelectedNumber));
+        }
+    }, []);
+
+    useEffect(() => {
         const getOrderData = () => {
+            const orders = [];
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
-                if (key.startsWith('orderData')) {
-                    return JSON.parse(localStorage.getItem(key));
+                if (key.startsWith('order')) {
+                    orders.push(JSON.parse(localStorage.getItem(key)));
                 }
             }
-            return null;
+            return orders.length > 0 ? orders : null;
         };
     
         const orderData = getOrderData();
     
         if (orderData) {
-            setSelectedNumber(orderData.selectedNumber);
-            setEvents(orderData.eventsData);
+            setEvents(orderData);
         } else {
             console.error('Error: No order data found in localStorage.');
         }
     }, []);
-    
 
     useEffect(() => {
-        // Calculate the total order value based on selectedNumber and events
-        if (events) {
-            const totalPrice = events.price * selectedNumber;
+        if (events.length > 0) {
+            const totalPrice = events.reduce((total, order) => total + order.eventsData.price, 0) * selectedNumber;
             setTotalOrderValue(totalPrice);
         }
-    }, [selectedNumber, events]); // Recalculate total order value when selectedNumber or events change
+    }, [selectedNumber, events]); 
 
     const handleMinusClick = () => {
         if (selectedNumber > 1) {
             setSelectedNumber(selectedNumber - 1);
+            localStorage.setItem('selectedNumber', selectedNumber - 1);
         }
     };
-
+    
     const handlePlusClick = () => {
-        // You may want to add a check here to limit the maximum number of tickets
         setSelectedNumber(selectedNumber + 1);
+        localStorage.setItem('selectedNumber', selectedNumber + 1);
     };
-
+    
     const handleAddToCart = () => {
-        // Save selected number and data to localStorage
-        const orderData = {
-            selectedNumber,
-            eventsData: events
+        const existingOrderData = JSON.parse(localStorage.getItem('orderData')) || [];
+    
+        const newOrderData = {
+            eventsData: events,
+            selectedNumber: selectedNumber
         };
-        localStorage.setItem('orderData', JSON.stringify(orderData));
+        existingOrderData.push(newOrderData);
+    
+        localStorage.setItem('orderData', JSON.stringify(existingOrderData));
     };
 
     return (
         <>
-            <section className="order-container">
-                <h1 className="order-page-title">Order</h1>
-                <section className="order-wrapper">
-                    {/* Use data from localStorage */}
-                    {events && (
-                        <>
-                            <h1 className="order-title">{events.name}</h1>
-                            <aside className='order-info'>
-                                <p className="order-date order-info-item">{events.when.date}</p>
-                                <p className="order-kl order-info-item">kl</p>
-                                <p className="order-from order-info-item">{events.when.from}</p>
-                                <p className="order-divider order-info-item">-</p>
-                                <p className="order-to order-info-item">{events.when.to}</p>
-                            </aside>
-                        </>
-                    )}
-                    <aside className="order-selector">
-                        <i className="minusIcon fa-solid fa-minus order-selector-item" onClick={handleMinusClick}></i>
-                        <h2 className="order-number">{selectedNumber}</h2>
-                        <i className="plusIcon fa-solid fa-plus order-selector-item" onClick={handlePlusClick}></i>
-                    </aside>
+            <h1 className="order-page-title">Order</h1>
+            {events.map((order, index) => (
+                <section className="order-container" key={index}>
+                    <section className="order-wrapper">
+                        <h1 className="order-title">{order.eventsData.name}</h1>
+                        <aside className='order-info'>
+                            <p className="order-date order-info-item">{order.eventsData.when.date}</p>
+                            <p className="order-kl order-info-item">kl</p>
+                            <p className="order-from order-info-item">{order.eventsData.when.from}</p>
+                            <p className="order-divider order-info-item">-</p>
+                            <p className="order-to order-info-item">{order.eventsData.when.to}</p>
+                        </aside>
+                        <aside className="order-selector">
+                            <i className="minusIcon fa-solid fa-minus order-selector-item" onClick={handleMinusClick}></i>
+                            <h2 className="order-number">{selectedNumber}</h2>
+                            <i className="plusIcon fa-solid fa-plus order-selector-item" onClick={handlePlusClick}></i>
+                        </aside>
+                    </section>
                 </section>
-            </section>
+            ))}
             <section className="order-value-container">
                 <p className="order-value-text">Totalt värde på order</p>
                 <aside className="order-value-wrapper">
-                    {/* Display the total order value */}
                     <h2 className="order-value order-value-title">{totalOrderValue}</h2>
                     <h2 className="order-sek order-value-title">sek</h2>
                 </aside>
@@ -97,7 +101,6 @@ function OrderSelector() {
                     <p className="button-text">Beställ</p>
                 </nav>
             </Link>
-        
         </>
     );
 }

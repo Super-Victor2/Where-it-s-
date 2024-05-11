@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap');
+
+/*   Ticket Container   */
+
+.ticket-container {
+    display: flex;
+    flex-direction: column;
+    margin: 3em;
+    background-color: white;
+    border-radius: 3px;
+}
+
+/*   Ticket What / Where   */
+
+.ticket-what-wrapper, .ticket-where-wrapper  {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+}
+
+.ticket-what, .ticket-where {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.ticket-title {
+    color: var(--primary-font-color);
+    font-size: var(--title-font-size);
+    margin: 0;
+}
+
+.ticket-arena {
+    font-size: var(--title-font-size);
+    margin: 0;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+/*   Ticket Date  */
+
+.ticket-date-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.ticket-info {
+    color: rgba(0, 0, 0, 0.4);
+    margin-left: 1em;
+}
+
+.ticket-date {
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 1em;
+    margin-top: 0;
+}
+
+.ticket-when-wrapper, .ticket-from-wrapper, .ticket-to-wrapper {
+    border: 1px solid black;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/*   Ticket Info   */
+
+.ticket-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+}
+
+.ticket-info-title {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.ticket-info-text {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/*   Ticket Scanner   */
+
+.ticket-scanner-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.10);
+
+}
+
+.ticket-scanner-text {
+    font-family: "Libre Barcode 128", system-ui;
+    color: black;
+    font-size: 80px;
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+
+.ticket-scanner-id {
+    color: rgba(0, 0, 0, 0.6);
+    margin-top: -20px;
+}
