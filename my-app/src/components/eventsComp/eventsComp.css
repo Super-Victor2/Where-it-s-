@@ -1,0 +1,150 @@
+/*   Event Top   */
+
+.event-top-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 3em;
+}
+
+.event-top-title {
+    margin: 0;
+    color: var(--primary-font-color);
+    font-size: var(--title-font-size);
+}
+
+.event-search {
+    margin: 1em;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 35px;
+}
+
+.event-search:focus {
+    transform: scale(1.03);
+}
+
+/*   Event boxes   */
+
+.event-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 3em;
+}
+
+.event-card {
+    display: flex;
+    gap: 1em;
+}
+
+.date-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 79px;
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+.date {
+    text-align: center;
+    color: white;
+    font-size: 14px;
+}
+
+/*   Event boxes info  */
+
+.event-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 500px) );
+    grid-template-rows: repeat(3, 26px);
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.event-name {
+    font-size: 22px;
+}
+
+.event-arena {
+    grid-area: 2 / 1;
+    font-size: 12px;
+    font-style: italic;
+
+}
+
+.event-from {
+    grid-area: 3 / 1;
+    font-size: 14px;
+}
+
+.event-to {
+    grid-area: 3 / 1;
+    margin-left: 50px;
+    font-size: 14px;
+}
+
+.event-price {
+    grid-area: 3 / 3;
+    font-size: 17px;
+    color: var(--secondary-font-color);
+}
+
+p {
+    color: white;
+}
+
+/*   Event button  */
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.button-wrapper {
+    background-color: var(--button-color);
+    width: 225px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    margin-top: 1em;
+    margin-bottom: 6em;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-text {
+    font-size: 22px;
+}
+
+/*   Button Hover   */
+
+.button-wrapper:hover {
+    opacity: 90%;
+    transform: scale(1.03);
+}
+
+/*   Event boxes info mediaquarry  */
+
+@media screen and (max-width: 480px) {
+    .event-name {
+        font-size: 18px;
+    }
+
+}
+@media screen and (max-width: 400px) {
+    .date {
+        font-size: 12px;
+    }
+}
