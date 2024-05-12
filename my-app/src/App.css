@@ -18,11 +18,11 @@
 }
 
 .app {
-    max-width: 500px;
-    height: 100%;
-    position: relative;
+  max-width: 500px;
+  height: 100%;
+  position: relative;
 }
 
 body {
-    margin: 0;
+  margin: 0;
 }

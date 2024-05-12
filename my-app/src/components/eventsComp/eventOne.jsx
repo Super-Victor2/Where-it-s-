@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const MyComponent = () => {
-  const [event, setEvent] = useState(null); // Only store one event, not an array
+  const [event, setEvent] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,7 +12,6 @@ const MyComponent = () => {
           throw new Error('Network response was not ok');
         }
         const jsonData = await response.json();
-        // Accessing the first object from the 'events' array in the response
         setEvent(jsonData.events[0]);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -20,7 +19,7 @@ const MyComponent = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array means this effect runs only once after the initial render
+  }, []);
 
   if (!event) {
     return <div>Error: Data format is not as expected.</div>;

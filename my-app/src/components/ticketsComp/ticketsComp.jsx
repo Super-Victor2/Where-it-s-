@@ -3,8 +3,8 @@ import './ticketsComp.css';
 
 function Tickets() {
     const [ticketsData, setTicketsData] = useState([]);
-    const ticketNumber = 87; // Initialize ticket number
-    const ticketLetter = 'a'.charCodeAt(0); // Initialize ticket letter as 'a'
+    const ticketNumber = 87;
+    const ticketLetter = 'a'.charCodeAt(0); 
 
     useEffect(() => {
         const getOrderData = () => {
@@ -23,13 +23,13 @@ function Tickets() {
             const selectedNumber = orderData.selectedNumber;
             const tickets = Array.from({ length: selectedNumber }, (_, index) => {
                 const currentTicketNumber = ticketNumber + index;
-                const currentTicketLetter = String.fromCharCode(ticketLetter + index).toUpperCase(); // Capitalize the letter
+                const currentTicketLetter = String.fromCharCode(ticketLetter + index).toUpperCase();
                 return {
                     id: index + 1,
                     eventsData: orderData.eventsData,
                     scannerId: generateRandomScannerId(),
-                    ticketNumber: currentTicketNumber, // Assigning ticket number
-                    ticketLetter: currentTicketLetter // Assigning ticket letter
+                    ticketNumber: currentTicketNumber,
+                    ticketLetter: currentTicketLetter 
                 };
             });
             setTicketsData(tickets);
@@ -38,7 +38,6 @@ function Tickets() {
         }
     }, []);
 
-    // Function to generate a random alphanumeric string for the scanner ID
     const generateRandomScannerId = () => {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         const length = 6;

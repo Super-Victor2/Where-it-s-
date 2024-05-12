@@ -46,8 +46,8 @@
 
 .date-wrapper {
     display: flex;
-    justify-content: center; /* Horizontally center content */
-    align-items: center; /* Vertically center content */
+    justify-content: center;
+    align-items: center;
     width: 160px;
     height: 79px;
     border: 1px solid white;
