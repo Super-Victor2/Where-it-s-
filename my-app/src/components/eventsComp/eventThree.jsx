@@ -25,7 +25,6 @@ const MyComponent = () => {
     return <div>Error: Data format is not as expected.</div>;
   }
 
-  console.log(event);
 
   return (
     <Link to='/eventOrderPageThree' className='event-wrapper'>

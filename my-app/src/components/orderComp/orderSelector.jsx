@@ -1,93 +1,87 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './orderComp.css';
-import { Link } from 'react-router-dom';
+import useStore from '../../store'; // Import Zustand store
 
 function OrderSelector() {
-    const [selectedNumber, setSelectedNumber] = useState(1); 
-    const [events, setEvents] = useState([]); 
-    const [totalOrderValue, setTotalOrderValue] = useState(0); 
+    const { selectedNumber, setSelectedNumber, events, setEventsData, totalOrderValue, setTotalOrderValue } = useStore(); // Connect component to Zustand store
 
     useEffect(() => {
-        const storedSelectedNumber = localStorage.getItem('selectedNumber');
-        if (storedSelectedNumber) {
-            setSelectedNumber(parseInt(storedSelectedNumber));
-        }
-    }, []);
+        // Fetch events data from API or any other source and set it in Zustand store
+        fetchEventsData()
+            .then(eventsData => {
+                setEventsData(eventsData); // This is where the error occurs
+            })
+            .catch(error => {
+                console.error('Error fetching events data:', error);
+            });
+    }, [setEventsData]); // Dependency should include setEventsData
+
 
     useEffect(() => {
-        const getOrderData = () => {
-            const orders = [];
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                if (key.startsWith('order')) {
-                    orders.push(JSON.parse(localStorage.getItem(key)));
-                }
-            }
-            return orders.length > 0 ? orders : null;
-        };
-    
-        const orderData = getOrderData();
-    
-        if (orderData) {
-            setEvents(orderData);
-        } else {
-            console.error('Error: No order data found in localStorage.');
-        }
-    }, []);
-
-    useEffect(() => {
-        if (events.length > 0) {
-            const totalPrice = events.reduce((total, order) => total + order.eventsData.price, 0) * selectedNumber;
+        // Calculate total order value whenever selectedNumber or events change
+        if (events && Array.isArray(events)) { // Check if events is an array
+            const totalPrice = events.reduce((total, order) => total + order.price, 0) * selectedNumber;
             setTotalOrderValue(totalPrice);
         }
-    }, [selectedNumber, events]); 
+    }, [selectedNumber, events, setTotalOrderValue]);
 
     const handleMinusClick = () => {
+        // Decrease selectedNumber
         if (selectedNumber > 1) {
             setSelectedNumber(selectedNumber - 1);
-            localStorage.setItem('selectedNumber', selectedNumber - 1);
         }
     };
     
     const handlePlusClick = () => {
+        // Increase selectedNumber
         setSelectedNumber(selectedNumber + 1);
-        localStorage.setItem('selectedNumber', selectedNumber + 1);
     };
     
     const handleAddToCart = () => {
-        const existingOrderData = JSON.parse(localStorage.getItem('orderData')) || [];
-    
-        const newOrderData = {
-            eventsData: events,
-            selectedNumber: selectedNumber
-        };
-        existingOrderData.push(newOrderData);
-    
-        localStorage.setItem('orderData', JSON.stringify(existingOrderData));
+        // Handle adding order to cart, you can implement this according to your requirements
+        console.log('Add to cart clicked');
+    };
+
+    // Dummy function to fetch events data from API (replace with your actual implementation)
+    const fetchEventsData = async () => {
+        try {
+            const response = await fetch('https://santosnr6.github.io/Data/events.json');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const eventData = await response.json();
+            return eventData;
+        } catch (error) {
+            throw new Error('Error fetching events data:', error);
+        }
     };
 
     return (
         <>
             <h1 className="order-page-title">Order</h1>
-            {events.map((order, index) => (
-                <section className="order-container" key={index}>
-                    <section className="order-wrapper">
-                        <h1 className="order-title">{order.eventsData.name}</h1>
-                        <aside className='order-info'>
-                            <p className="order-date order-info-item">{order.eventsData.when.date}</p>
-                            <p className="order-kl order-info-item">kl</p>
-                            <p className="order-from order-info-item">{order.eventsData.when.from}</p>
-                            <p className="order-divider order-info-item">-</p>
-                            <p className="order-to order-info-item">{order.eventsData.when.to}</p>
-                        </aside>
-                        <aside className="order-selector">
-                            <i className="minusIcon fa-solid fa-minus order-selector-item" onClick={handleMinusClick}></i>
-                            <h2 className="order-number">{selectedNumber}</h2>
-                            <i className="plusIcon fa-solid fa-plus order-selector-item" onClick={handlePlusClick}></i>
-                        </aside>
+            {Array.isArray(events) && events.length > 0 ? (
+                events.map((order, index) => (
+                    <section className="order-container" key={index}>
+                        <section className="order-wrapper">
+                            <h1 className="order-title">{order.name}</h1>
+                            <aside className='order-info'>
+                                <p className="order-date order-info-item">{order.when.date}</p>
+                                <p className="order-kl order-info-item">kl</p>
+                                <p className="order-from order-info-item">{order.when.from}</p>
+                                <p className="order-divider order-info-item">-</p>
+                                <p className="order-to order-info-item">{order.when.to}</p>
+                            </aside>
+                            <aside className="order-selector">
+                                <i className="minusIcon fa-solid fa-minus order-selector-item" onClick={handleMinusClick}></i>
+                                <h2 className="order-number">{selectedNumber}</h2>
+                                <i className="plusIcon fa-solid fa-plus order-selector-item" onClick={handlePlusClick}></i>
+                            </aside>
+                        </section>
                     </section>
-                </section>
-            ))}
+                ))
+            ) : (
+                <p>Loading...</p>
+            )}
             <section className="order-value-container">
                 <p className="order-value-text">Totalt värde på order</p>
                 <aside className="order-value-wrapper">
@@ -96,11 +90,11 @@ function OrderSelector() {
                 </aside>
             </section>
         
-            <Link to='/ticketsPage' className="button-container" onClick={handleAddToCart}>
-                <nav className='button-wrapper'>
+            <div className="button-container" onClick={handleAddToCart}>
+                <div className='button-wrapper'>
                     <p className="button-text">Beställ</p>
-                </nav>
-            </Link>
+                </div>
+            </div>
         </>
     );
 }

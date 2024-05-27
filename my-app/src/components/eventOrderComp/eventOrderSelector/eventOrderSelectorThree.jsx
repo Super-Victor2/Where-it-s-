@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import '../eventOrderComp.css';
 import { Link } from 'react-router-dom';
+import useStore from '../../../store'; // Adjust the path as needed
 
-function EventOrderSelector() {
-    // Generate a unique key using a timestamp
-    const generateUniqueKey = () => {
-        return `order_${Date.now()}`;
-    };
-
-    
-
-    const [selectedNumber, setSelectedNumber] = useState(() => {
-        const savedSelectedNumber = localStorage.getItem('selectedNumber');
-        return savedSelectedNumber ? parseInt(savedSelectedNumber) : 0; // Start at 0
-    });
-
-    const [eventsData, setEventsData] = useState(null);
-    const [totalPrice, setTotalPrice] = useState(() => {
-        const savedPrice = localStorage.getItem('eventsDataPrice');
-        return savedPrice ? parseFloat(savedPrice) : 0;
-    });
+function EventOrderSelectorThree() {
+    const {
+        selectedNumber,
+        totalPrice,
+        eventsData,
+        setSelectedNumber,
+        setTotalPrice,
+        setEventsData,
+        addToCart
+    } = useStore();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,45 +29,36 @@ function EventOrderSelector() {
         };
 
         fetchData();
-    }, []);
+    }, [setEventsData]);
 
     const handleMinusClick = () => {
-        if (selectedNumber > 0) {
+        if (selectedNumber > 0 && eventsData) {
             const newSelectedNumber = selectedNumber - 1;
             setSelectedNumber(newSelectedNumber);
-            localStorage.setItem('selectedNumber', newSelectedNumber.toString());
-    
+
             const newTotalPrice = totalPrice - eventsData.price;
             setTotalPrice(newTotalPrice);
-            localStorage.setItem('eventsDataPrice', newTotalPrice.toString());
         }
     };
-    
+
     const handlePlusClick = () => {
-        const newSelectedNumber = selectedNumber + 1;
-        setSelectedNumber(newSelectedNumber);
-        localStorage.setItem('selectedNumber', newSelectedNumber.toString());
-    
-        const newTotalPrice = totalPrice + eventsData.price;
-        setTotalPrice(newTotalPrice);
-        localStorage.setItem('eventsDataPrice', newTotalPrice.toString());
+        if (eventsData) {
+            const newSelectedNumber = selectedNumber + 1;
+            setSelectedNumber(newSelectedNumber);
+
+            const newTotalPrice = totalPrice + eventsData.price;
+            setTotalPrice(newTotalPrice);
+        }
     };
-    
-    
-    
+
     const handleAddToCart = () => {
-        const key = generateUniqueKey(); // Generate unique key
         const orderData = {
             selectedNumber,
             eventsData
         };
-        localStorage.setItem(key, JSON.stringify(orderData));
-        
-        // Now let's retrieve the data from localStorage and log it
-        const storedOrderData = JSON.parse(localStorage.getItem(key));
-        console.log(storedOrderData.selectedNumber); // Log the selectedNumber
+        addToCart(orderData);
+        console.log(orderData.selectedNumber); // Log the selectedNumber
     };
-    
 
     return (
         <section className="event-order-container">
@@ -101,4 +85,4 @@ function EventOrderSelector() {
     );
 }
 
-export default EventOrderSelector;
+export default EventOrderSelectorThree;

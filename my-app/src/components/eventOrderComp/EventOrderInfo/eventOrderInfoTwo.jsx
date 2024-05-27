@@ -25,7 +25,6 @@ function eventOrderinfo() {
         return <div>Error: Data format is not as expected.</div>;
     }
 
-  console.log(event);
     return (
         <>
             <section className="event-info-container">
